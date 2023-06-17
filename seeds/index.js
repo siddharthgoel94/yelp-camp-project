@@ -1,3 +1,126 @@
+const indiaCities=[
+    {
+      "name": "Kanpur",
+      "latitude": 26.4499,
+      "longitude": 80.3319
+    },
+    {
+      "name": "Visakhapatnam",
+      "latitude": 17.6868,
+      "longitude": 83.2185
+    },
+    {
+      "name": "Nagpur",
+      "latitude": 21.1458,
+      "longitude": 79.0882
+    },
+    {
+      "name": "Indore",
+      "latitude": 22.7196,
+      "longitude": 75.8577
+    },
+    {
+      "name": "Coimbatore",
+      "latitude": 11.0168,
+      "longitude": 76.9558
+    },
+    {
+      "name": "Patna",
+      "latitude": 25.5941,
+      "longitude": 85.1376
+    },
+    {
+      "name": "Vadodara",
+      "latitude": 22.3072,
+      "longitude": 73.1812
+    },
+    {
+      "name": "Bhubaneswar",
+      "latitude": 20.2961,
+      "longitude": 85.8245
+    },
+    {
+      "name": "Thiruvananthapuram",
+      "latitude": 8.5241,
+      "longitude": 76.9366
+    },
+    {
+      "name": "Guwahati",
+      "latitude": 26.1445,
+      "longitude": 91.7362
+    },
+    {
+      "name": "Mangalore",
+      "latitude": 12.9141,
+      "longitude": 74.8560
+    },
+    {
+      "name": "Raipur",
+      "latitude": 21.2514,
+      "longitude": 81.6296
+    },
+    {
+      "name": "Ranchi",
+      "latitude": 23.3441,
+      "longitude": 85.3096
+    },
+    {
+      "name": "Amravati",
+      "latitude": 20.9374,
+      "longitude": 77.7796
+    },
+    {
+      "name": "Jodhpur",
+      "latitude": 26.2389,
+      "longitude": 73.0243
+    },
+    {
+      "name": "Dehradun",
+      "latitude": 30.3165,
+      "longitude": 78.0322
+    },
+    {
+      "name": "Srinagar",
+      "latitude": 34.0837,
+      "longitude": 74.7973
+    },
+    {
+      "name": "Kozhikode",
+      "latitude": 11.2588,
+      "longitude": 75.7804
+    },
+    {
+      "name": "Jamshedpur",
+      "latitude": 22.8046,
+      "longitude": 86.2029
+    },
+    {
+      "name": "Allahabad",
+      "latitude": 25.4358,
+      "longitude": 81.8463
+    },
+    {
+        "name": "Jaipur",
+        "latitude": 26.9124,
+        "longitude": 75.7873
+      },
+      {
+        "name": "Lucknow",
+        "latitude": 26.8467,
+        "longitude": 80.9462
+      },
+      {
+        "name": "Chandigarh",
+        "latitude": 30.7333,
+        "longitude": 76.7794
+      },
+      {
+        "name": "Agra",
+        "latitude": 27.1767,
+        "longitude": 78.0081
+      }
+  ]
+  
 descriptors = [
     'Forest',
     'Ancient',
@@ -75,21 +198,25 @@ const seedDb=async ()=>{
     await Campground.deleteMany({});
     for(let i=0;i<50;i++){
         const random1000=Math.floor(Math.random()*1000);
+        const random20=Math.floor(Math.random()*20);
         const calcPrice=Math.floor(Math.random()*20)+10;
-        const newCamp=new Campground({location:`${cities[random1000].city}, ${cities[random1000].state}`,
+        const newCamp=new Campground({location:`${indiaCities[random20].name}`,
         title:`${makeName(descriptors)} ${makeName(places)}`,
         author:"6484228b1ce86223ac5d7285",
         price:calcPrice,
-        geometry: { type: 'Point', coordinates: [cities[random1000].longitude,cities[random1000].latitude] },
+        geometry: { type: 'Point', 
+        // coordinates: [cities[random1000].longitude,cities[random1000].latitude]
+        coordinates: [indiaCities[random20].longitude,indiaCities[random20].latitude]
+     },
         images: [
             {
-              url: 'https://res.cloudinary.com/dsslq2vi3/image/upload/v1686376919/YelpCamp/xzr3igl66cimealn5hk3.jpg',
-              name: 'YelpCamp/xzr3igl66cimealn5hk3',
+              url: 'https://res.cloudinary.com/dsslq2vi3/image/upload/v1686920909/YelpCamp/ss8vzkxw2yk2oielq9fv.jpg',
+              name: 'YelpCamp/ss8vzkxw2yk2oielq9fv',
               
             },
             {
-              url:'https://res.cloudinary.com/dsslq2vi3/image/upload/v1686376921/YelpCamp/g6rjpivxmyqbiaplmd5d.jpg' ,
-              name:'YelpCamp/g6rjpivxmyqbiaplmd5d',
+              url:'https://res.cloudinary.com/dsslq2vi3/image/upload/v1686920907/YelpCamp/wj9s3g990ugwyqdslaja.jpg' ,
+              name:'YelpCamp/wj9s3g990ugwyqdslaja',
              
             }
           ],
