@@ -1,26 +1,29 @@
 <%layout('layouts/boilerplate')%>
     <!-- <h1>Campground details</h1> -->
     <link rel="stylesheet" href="/styles/stars.css">
+    <link rel="stylesheet" href="/styles/showPage.css">
     <script>
       const mapToken="<%-process.env.MAPBOX_TOKEN%>"
       const campground=<%- JSON.stringify(campground)%>
     </script>
     
- 
-    
+ <div class="showPageHeading">
+    <h1>Welcome to <%=campground.title%> </h1>
+  </div>
 
     <div class="row mb-5">
+     
       
-        <div class="col-6">
+        <div class="col-md-6 myCard">
 
-          <div id='map' style='width: 400px; height: 300px;'></div>
-            <div class="card">
+          <!-- <div id='map' style='width: 400px; height: 300px;'></div> -->
+            <div class="card" style="width:30rem;">
               <!-- carousel started here -->
-              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
+              <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+                <div class="carousel-inner" id="myCardSlider">
                   <%for(let i=0;i<campground.images.length;i++){%>
                   <div class="carousel-item <%=i==0?'active':''%>">
-                    <img class="d-block w-100" src="<%=campground.images[i].url%>" alt="First slide">
+                    <img class="d-block w-100" style="height: 30rem;" src="<%=campground.images[i].url%>" alt="First slide">
                   </div>
                   <%}%>
                   <% if(campground.images.length>1){ %>
@@ -64,28 +67,17 @@
               </div>
             </div>
             </div>
-
-            <div class="review col-6 mb-3">
+            
+            <div class="review col-md-6 mb-3">
+              <div id='map' class="mb-3" style='width: 500px; height: 300px; margin: 10px;'></div>
               <%if(currentUser){%>
-              <h2>Leave a Review</h2>
+                <div class="myReview">
+              <h2 class="reviewHeading">Leave a Review</h2>
               <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
                 <div class="rating mb-3">
                   <label for="rating">Rating</label>
                   <input type="range" class="form-control" min="1" max="5" name="review[rating]" id="rating">
-                  <!-- <fieldset class="starability-basic">
-                    <legend>First rating:</legend>
-                    <input type="radio" id="first" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
-                    <input type="radio" id="first" name="review[rating]" value="1" />
-                    <label for="first-rate1" title="Terrible">1 star</label>
-                    <input type="radio" id="first" name="review[rating]" value="2" />
-                    <label for="first-rate2" title="Not good">2 stars</label>
-                    <input type="radio" id="first" name="review[rating]" value="3" />
-                    <label for="first-rate3" title="Average">3 stars</label>
-                    <input type="radio" id="first" name="review[rating]" value="4" />
-                    <label for="first-rate4" title="Very good">4 stars</label>
-                    <input type="radio" id="first" name="review[rating]" value="5" />
-                    <label for="first-rate5" title="Amazing">5 stars</label>
-                  </fieldset> -->
+                 
                 </div>
 
                 <div class="body mb-3">
@@ -95,7 +87,9 @@
                 </div>
                 <button class="btn btn-success">Add review</button>
               </form>
+            </div>
               <%}%>
+              
               
 
               
