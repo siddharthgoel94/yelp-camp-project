@@ -5,8 +5,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: repeat-y;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5); */
+    /* box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5); */
 }
 .img-holder{
     height:300px;
@@ -20,11 +20,13 @@ body {
     width: 100%;
    
     height:500px;
+    border-radius: 20px;
 }
 .index-text{
     display: flex;
     /* align-items: center; */
     justify-content: center;
+    color:rgb(117, 116, 116);
 }
 
 
@@ -44,4 +46,10 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 20px;
+    /* backdrop-filter: blur(8px); */
+    /* background-color: aliceblue; */
+    /* -webkit-filter: blur(8px); */
+}
+.myTitle{
+    font-weight: 500;
 }

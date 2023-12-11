@@ -1,5 +1,5 @@
 #myCardSlider{
-    border: 5px solid rgb(28, 31, 234);
+    /* border: 5px solid rgb(28, 31, 234); */
     height:50;
     width:500;
 }
@@ -7,7 +7,7 @@
     text-align: center;
 }
 .myReview{
-    border: 2px solid purple;
+    /* border: 2px solid purple; */
     padding: 10px;
     margin: 10px;
 }   

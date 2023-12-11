@@ -33,12 +33,14 @@ module.exports.createNewCampground=async (req,res,next)=>{
     }).send()
     // console.log(geoData.body.features);
     // res.send("data received")
+    // console.log(req.user);
     campground.author=req.user._id;
+
     campground.images=req.files.map(f=>({url:f.path,name:f.filename}));
     campground.geometry=geoData.body.features[0].geometry;
-    console.log(campground);
+    // console.log(campground);
     await campground.save();
-    req.flash('success','successfully made a new capground');
+    req.flash('success','successfully made a new campground');
     res.redirect(`/campgrounds/${campground._id}`)
 }
 module.exports.getEditForm=async(req,res)=>{
@@ -78,6 +80,13 @@ module.exports.updateCampground = async (req, res) => {
 
 module.exports.deleteCampground=async (req,res)=>{
     const {id}=req.params;
+   const campToBeDeleted= Campground.findById(id);
+   const imgsDel=campToBeDeleted.images;
+   console.log(imgsDel);
+   for(image of imgsDel){
+    console.log(image);
+    await cloudinary.uploader.destroy(image);
+   }
     await Campground.findByIdAndDelete(id);
     req.flash('success',"Successfully deleted Campground")
     res.redirect('/campgrounds');
